@@ -5,9 +5,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import web.model.Roles;
-import web.model.User;
-import web.service.UserService;
+import ru.javamentor.springboot311.service.UserService;
+import ru.javamentor.springboot311.model.User;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;

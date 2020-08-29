@@ -29,13 +29,9 @@ public class User {
     @Column(name = "status")
     private Status status;
 
-//    private Long Id;
-//    private String firstName;
-//    private String lastName;
-
     public User(){
     }
-    public User(Long id, String firstName, String lastName) {
+    public User(Long id, String firstName, String lastName, String email, String password, Enum role, Enum status) {
         id = id;
         this.firstName = firstName;
         this.lastName = lastName;
