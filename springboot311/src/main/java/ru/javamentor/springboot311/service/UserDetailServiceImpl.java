@@ -1,4 +1,5 @@
-package ru.javamentor.springboot311.security;
+package ru.javamentor.springboot311.service;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,19 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.javamentor.springboot311.model.Roles;
 import ru.javamentor.springboot311.model.User;
 import ru.javamentor.springboot311.repository.UserDao;
-import ru.javamentor.springboot311.repository.UserRepository;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailServiceImpl implements UserDetailsService {
     //    private UserRepository userRepository;
     private UserDao userDao;
 
     @Autowired
-    public UserDetailsServiceImpl(UserDao userDao) {
+    public UserDetailServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 

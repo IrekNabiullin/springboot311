@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" x-placement="" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    /
+</head>
+<body>
+<div class="container col-md-5">
+    <div class="card">
+        <div class="card-body">
+            <h2 th:align="center" class="card-title">User info</h2>
+            <h5 th:align="center">User Name: [[${user.getFirstName()}]]</h5>
+            <h5 th:align="center">Last Name: [[${user.getLastName()}]]</h5>
+            <h5 th:align="center">E-mail: [[${user.getEmail()}]]</h5>
+            <h5 th:align="center">Login: [[${user.getLogin()}]]</h5>
+            <h5 th:align="center">Password: [[${user.getPassword()}]]</h5>
+
+            <p th:align="center">
+                <a sec:authorize="hasRole('ADMIN')" th:align="center" th:href="@{/admin} ">For admins</a>
+            </p>
+
+            <form th:align="center" th:action="@{/logout}" method="post">
+                <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                <input type="submit" value="Sign Out"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

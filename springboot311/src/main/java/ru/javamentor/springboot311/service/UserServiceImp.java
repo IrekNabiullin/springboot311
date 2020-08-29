@@ -2,13 +2,15 @@ package ru.javamentor.springboot311.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.javamentor.springboot311.model.User;
+import ru.javamentor.springboot311.repository.UserDao;
 import ru.javamentor.springboot311.repository.UserRepository;
 
 import java.util.List;
 
 @Service
-public class UserServiceImp  implements UserService {
+public class UserServiceImp implements UserService {
 
     @Autowired
     private UserDao userDao;
@@ -54,3 +56,4 @@ public class UserServiceImp  implements UserService {
     public void deleteAllUsersFromTable() {
         userDao.deleteAllUsersFromTable();
     }
+}
