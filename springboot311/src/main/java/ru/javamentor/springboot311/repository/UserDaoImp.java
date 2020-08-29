@@ -1,7 +1,5 @@
 package ru.javamentor.springboot311.repository;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.javamentor.springboot311.model.User;
 
@@ -43,7 +41,7 @@ public class UserDaoImp implements UserDao {
             User userTemp = query.setParameter("username", username)
                     .getSingleResult();
             System.out.println("Got user. User name:" + userTemp.getLogin());
-            if(userTemp != null) {
+            if (userTemp != null) {
                 return userTemp;
             } else {
                 return null;
@@ -58,7 +56,7 @@ public class UserDaoImp implements UserDao {
     @Override
     public void addUser(User user) {
 
-        if (getUserByName(user.getLogin())!=null) {
+        if (getUserByName(user.getLogin()) != null) {
             System.out.println("User with login " + user.getLogin() + "exists");
         } else if (user.getId() == null) {
             entityManager.persist(user);

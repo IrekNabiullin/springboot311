@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.javamentor.springboot311.model.User;
 import ru.javamentor.springboot311.repository.UserDao;
-import ru.javamentor.springboot311.repository.UserRepository;
 
 import java.util.List;
 

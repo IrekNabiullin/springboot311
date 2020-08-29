@@ -9,6 +9,9 @@
     Are you sure
     you want to log out?
 </h2>
-<button class="button" th:align="center" onclick="location.href='/login?logout'">Logout</button>
+<div th:align="center">
+    <button class="button" onclick="location.href='/login?logout'">Logout</button>
+    <input type="button" onclick="history.back();" value="Назад"/>
+</div>
 </body>
 </html>

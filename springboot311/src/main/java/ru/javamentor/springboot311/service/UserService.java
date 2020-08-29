@@ -17,18 +17,4 @@ public interface UserService {
     void deleteUser(Long id);
 
     void deleteAllUsersFromTable();
-
-//    void addUser(User user);
-//
-//    List<User> listUsers();
-//
-//    User getUserById(Long id);
-//
-//    User getUserByEmail(String username);
-//
-//    void updateUser(User user);
-//
-//    void deleteUser(Long id);
-//
-//    void deleteAllUsersFromTable();
 }

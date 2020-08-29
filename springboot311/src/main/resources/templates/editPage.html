@@ -76,28 +76,6 @@
                         </ul>
                     </fieldset>
 
-                    <!--                    <form th:action="@{/users}" th:object="${user}" method="post" >-->
-                    <!--                        <ul th:if="${user.getRoles()} != null">-->
-                    <!--                            <li th:each="role : ${user.getRoles()}">-->
-                    <!--                                <label>-->
-                    <!--                                    <input type="checkbox" th:field="*{roles}" th:value="${role}"/>-->
-                    <!--                                </label>-->
-                    <!--                                <label th:for="${#ids.prev('roles')}" th:text="${role.getRole()}">NO ROLE</label>-->
-                    <!--                            </li>-->
-                    <!--                        </ul>-->
-                    <!--&lt;!&ndash;                        <input type="submit" value="Submit"/>&ndash;&gt;-->
-                    <!--                        <ul th:if="${user.getRoles()} == null">-->
-                    <!--                            <li >-->
-                    <!--                                <label>-->
-                    <!--                                    <input type="checkbox" th:field="*{roles}" th:value='USER'/>-->
-                    <!--                                </label>-->
-                    <!--                                <label th:for="${#ids.prev('roles')}" th:text="USER">NEW ROLE</label>-->
-                    <!--                            </li>-->
-                    <!--                        </ul>-->
-                    <!--                    </form>-->
-
-
-
                     <p>
                         <button type="reset">Очистить форму</button>
                         <button type="submit">Отправить форму</button>
@@ -109,31 +87,5 @@
         </div>
     </sec:authorize>
 </div>
-
-
-<!--<form th:action="@{/user}" th:object="${user}" method="post">-->
-
-<!--    <ul>-->
-<!--        <li th:each="role : ${user.getRoles()}">-->
-<!--            <label>-->
-<!--                <input type="checkbox" th:field="*{roles}" th:value="${role}"/>-->
-<!--            </label>-->
-<!--            <label th:for="${#ids.prev('roles')}" th:text="${role}">ADMIN</label>-->
-<!--        </li>-->
-<!--    </ul>-->
-
-
-<!--&lt;!&ndash;    <div>&ndash;&gt;-->
-<!--&lt;!&ndash;        <label th:for="${#ids.next('first')}">First:</label>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input type="checkbox" th:field="*{first}" />&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    <div>&ndash;&gt;-->
-<!--&lt;!&ndash;        <label th:for="${#ids.next('second')}">Second:</label>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input type="checkbox" th:field="*{second}"/>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-
-<!--    <input type="submit" value="Submit"/>-->
-<!--</form>-->
-
 </body>
 </html>

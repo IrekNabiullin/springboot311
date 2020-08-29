@@ -10,6 +10,8 @@ import java.util.stream.Stream;
 
 //@RestController
 //@RequestMapping("api/v1/users")
+
+//**************** заготовка для следующей задачи ********************
 public class UserRestControllerV1 {
 
 //    private List<User> USERS = Stream.of(

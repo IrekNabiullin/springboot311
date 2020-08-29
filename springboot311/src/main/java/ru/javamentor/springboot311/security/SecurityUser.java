@@ -4,8 +4,6 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.javamentor.springboot311.model.Status;
-import ru.javamentor.springboot311.model.User;
 
 import java.util.Collection;
 import java.util.List;
@@ -59,15 +57,4 @@ public class SecurityUser implements UserDetails {
     public boolean isEnabled() {
         return isActive;
     }
-
-//    public static UserDetails fromUser(User user) {
-//        return new org.springframework.security.core.userdetails.User(
-//                user.getEmail(), user.getPassword(),
-//                user.getStatus().equals(Status.ACTIVE),
-//                user.getStatus().equals(Status.ACTIVE),
-//                user.getStatus().equals(Status.ACTIVE),
-//                user.getStatus().equals(Status.ACTIVE),
-//                user.getRole().getAuthorities()
-//        );
-//    }
 }
