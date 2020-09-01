@@ -71,8 +71,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").anonymous()
                 // защищенные URL
                 .antMatchers("/profile").authenticated()
-
-
                 .antMatchers("/profile").access("hasAnyRole('ADMIN', 'USER')")
                 .antMatchers("/admin**")
                 .access("hasRole('ADMIN')")
@@ -81,7 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
     }
 
-//*************** вариант с зашифрованным паролем  ***********
+    //*************** вариант с зашифрованным паролем  ***********
     //    @Bean
 //    protected PasswordEncoder passwordEncoder() {
 //        return new BCryptPasswordEncoder(12);

@@ -1,74 +1,101 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-      lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
-    <style type="text/css">
-        .button {
-            display: inline-block;
-            height: 50px;
-            line-height: 50px;
-            position: relative;
-            border: 1px solid white;
-            padding: 0 1rem;
-        }
-    </style>
+    <title>Admin panel</title>
+    <link rel="shortcut icon" href="http://faviconka.ru/ico/faviconka_ru_1463.ico" type="image/x-icon">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
 </head>
 <body>
-<header th:align="center">
-    <h1 th:text="${usersHeadline}"></h1>
+<header>
+    <nav class="navbar navbar-dark bg-dark shadow ">
+
+        <div th:object="${user}">
+            <a class="navbar-text text-white font-weight-bold" th:text="${user.getEmail()}"> </a>
+            <a class="navbar-text text-white"
+               th:text=" ' with roles : ' "></a>
+            <a>
+                <th:block th:each="role : ${user.getRoles()}">
+                    <a class="navbar-text text-white font-weight-bold" th:text="${role.getRole()} ">,</a>
+                </th:block>
+            </a>
+
+        </div>
+
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        </ul>
+    </nav>
 </header>
 
-<table id="userList" width="1200" border="1" align="center">
-    <thead>
-    <tr>
-        <th> Name</th>
-        <th> Last Name</th>
-        <th> E-mail</th>
-        <th> Login</th>
-        <th> Password</th>
-        <th> Edit</th>
-        <th> Delete</th>
-        <th align="center"> Roles</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${users}"
-        th:style="${user} ? 'background: #f0f0f2;' : 'background: #ffffff;'">
-        <td th:text="${user.getFirstName()}"></td>
-        <td th:text="${user.getLastName()}"></td>
-        <td th:text="${user.getEmail()}"></td>
-        <td th:text="${user.getLogin()}"></td>
-        <td th:text="${user.getPassword()}"></td>
-        <td>
-            <a th:href="@{/users/edit(id=${user.id})} ">Edit</a>
-        </td>
-        <td>
-            <a th:href="@{/users/delete(id=${user.id})} ">Delete</a>
-        </td>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <p></p>
+            <div class="btn-group-vertical btn-block">
+                <button class="btn btn-primary" type="button">
+                    <a class="text-light" href="/profile">User </a>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-10 vh-100 bg-light">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+                <h1 class="h2">Admin panel</h1>
+            </div>
+            <div class="row">
+                <div class="card-header bg-white mb-3 py-3 px-md-3 border">
+                    <h5>Users table</h5>
+                </div>
+                <a href="/users/add" class="card-link mb-3 py-3 px-md-5">New User</a>
+            </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>All users</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th class="h5">ID</th>
+                                <th class="h5">First Name</th>
+                                <th class="h5">Last Name</th>
+                                <th class="h5">Age</th>
+                                <th class="h5">Email</th>
+                                <th class="h5">Password</th>
+                                <th class="h5">Role</th>
+                                <th class="h5">Edit</th>
+                                <th class="h5">Delete</th>
+                            </tr>
+                            </thead>
 
-        <td>
-            <ul>
-                <th:block th:each="role : ${user.getRoles()}">
-                    <li th:text="${role.getRole()} ">..</li>
-                </th:block>
-            </ul>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<br>
-<p th:align="center">
-    <button onclick="location.href='/users/add'">Add new user</button>
-</p>
-<p th:align="center">
-    <button onclick="location.href='/admin'">Back to main</button>
-    <button onclick="location.href='/logout'">Logout</button>
-</p>
-
+                            <tr th:each="user : ${users}">
+                                <td th:text="${user.getId()}"></td>
+                                <td th:text="${user.getFirstName()}"></td>
+                                <td th:text="${user.getLastName()}"></td>
+                                <td th:text="${user.getEmail()}"></td>
+                                <td th:text="${user.getLogin()}"></td>
+                                <td th:text="${user.getPassword()}"></td>
+                                <td>
+                                <span style="margin-right: 5px" th:each="roles : ${user.roles}"
+                                      th:text="${roles.role}"></span>
+                                </td>
+                                <td>
+                                    <a th:href="@{/users/edit(id=${user.id})} " class="btn btn-info" role="button" aria-pressed="true">Edit</a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/users/delete(id=${user.id})} " class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
