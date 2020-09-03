@@ -32,7 +32,8 @@ public class UserController {
 
         modelMap.addAttribute("users", userService.listUsers());
         modelMap.addAttribute("user", user);
-        return "admin";
+//        return "admin";
+        return "users";
     }
 
     @GetMapping(value = "/profile")
@@ -103,7 +104,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/add")
-    public String addForm() {
+    public String addForm(ModelMap modelMap, Authentication authentication) {
+        User user = userService.getUserByName(authentication.getName());
+        modelMap.addAttribute("user", user);
         return "addPage";
     }
 
@@ -125,14 +128,6 @@ public class UserController {
             rolesNewUser.addAll(userService.getUserByName("ADMIN").getRoles());
             System.out.println("Adding new user. Roles of user " + name + ": " + rolesNewUser.toString());
         }
-
-        System.out.println("Adding new user. Name: " + name);
-        System.out.println("Adding new user. Last_name: " + last_name);
-        System.out.println("Adding new user. Email: " + email);
-        System.out.println("Adding new user. Login: " + login);
-        System.out.println("Adding new user. Password: " + password);
-        System.out.println("Adding new user. Roles: " + rolesNewUser.toString());
-
         userService.addUser(new User(name, last_name, email, login, password, rolesNewUser));
         User user = userService.getUserByName(authentication.getName());
         modelMap.addAttribute("user", user);
@@ -142,18 +137,19 @@ public class UserController {
 
     @GetMapping("/users/delete")
     public String deleteUser(@RequestParam(value = "id") String id, ModelMap modelMap,
-                             @RequestParam(name = "locale", defaultValue = "en", required = false) String locale,
+//                             @RequestParam(name = "locale", defaultValue = "en", required = false) String locale,
                              Authentication authentication) {
         System.out.println("Delete user with id = " + id);
         Long userId = Long.parseLong(id);
         userService.deleteUser(userId);
-        ResourceBundle bundle = ResourceBundle.getBundle("language_" + locale);
-        modelMap.addAttribute("usersHeadline", bundle.getString("usersHeadline"));
+//        ResourceBundle bundle = ResourceBundle.getBundle("language_" + locale);
+//        modelMap.addAttribute("usersHeadline", bundle.getString("usersHeadline"));
         modelMap.addAttribute("users", userService.listUsers());
         User user = userService.getUserByName(authentication.getName());
         modelMap.addAttribute("user", user);
         return "users";
     }
+
 
     @GetMapping(value = "/logout")
     public String logOut(Authentication authentication, ModelMap modelMap) {
